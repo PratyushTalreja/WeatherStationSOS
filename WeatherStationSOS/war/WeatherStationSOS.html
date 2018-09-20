@@ -1,0 +1,757 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type = "text/javascript">
+    function temporalSubsetting()
+    {
+    	var url;
+    	var proc;
+    	var sens = document.getElementById("sensor").value;
+    	var offer = document.getElementById("offering").value;
+    	if(offer == "temperatureOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature";
+    		}
+    	else if(offer == "precipitationOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:meteo:air:rainfall";
+    		}
+    	else if(offer == "pressureOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:pressure";
+    		}
+    	else
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:evapo";
+    		}
+    	var ab = document.getElementById("afterbefore").value;
+    	var year = document.getElementById("years").value;
+    	console.log("Hi");
+    	if (ab == "After")
+    		{
+    		url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering="+offer+"&procedure=urn:ogc:def:procedure:x-istsos:1.0:"+sens+"&eventTime="+year+"-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty="+proc+"&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0";
+    		getObsTemp(url);
+    		}
+    	else
+    		{
+    		url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering="+offer+"&procedure=urn:ogc:def:procedure:x-istsos:1.0:"+sens+"&eventTime=1992-01-02T00:10:00.000000+0000/"+year+"-12-01T00:10:00.000000+0100&observedProperty="+proc+"&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0";
+    		getObsTemp(url);
+    		}
+    	modal1.style.display = "none";
+    }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['table']});
+      //google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable(datee, temperature) {
+        var count;
+    	  var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('string', 'Temperature');
+        for(count = 0; count < datee.length - 1; count++)
+        	{
+        data.addRows([
+          [datee[count], temperature[count]],
+        ]);
+        	}
+        data.addRows([
+            [datee[datee.length - 1], temperature[datee.length - 1]]
+          ]);
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+    </script>
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <link type="text/css" rel="stylesheet" href="WeatherStationSOS.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="//cdn.muicss.com/mui-0.9.4/css/mui.css" />
+    <script src="//cdn.muicss.com/mui-0.9.4/js/mui.js"></script>
+    <!--                                           -->
+    <!-- Any title is fine                         -->
+    <!--                                           -->
+    <title>Weather Station</title>
+    
+    <!--                                           -->
+    <!-- This script loads your compiled module.   -->
+    <!-- If you add any GWT meta tags, they must   -->
+    <!-- be added before this line.                -->
+    <!--                                           -->
+    <script type="text/javascript" language="javascript" src="weatherstationsos/weatherstationsos.nocache.js"></script>
+    <script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="styles.css">
+     <script type="text/javascript">
+    function ini()
+    {
+    	document.getElementById("b1").disabled=true;
+    	document.getElementById("b2").disabled=true;
+    	document.getElementById("b3").disabled=true;
+    	document.getElementById("b4").disabled=true;
+    	document.getElementById("b5").disabled=true;
+    	document.getElementById("myBtn").disabled=true;
+    	document.getElementById("myBtn1").disabled=true;
+    	document.getElementById("myBtn2").disabled=true;
+    	document.getElementById("b6").disabled=true;
+    }
+    </script> 
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+ /* .mdl-layout__container {
+ z-index: 9999;
+ } */
+button.accordion {
+    background-color: #37474F;
+    color: #ddd;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.1s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #37474F;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: #37474F;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 85%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close1 {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close2 {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close2:hover,
+.close2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 4px;
+    background-color: #03A9F4;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+    </style>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body onload = "ini();">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--indigo-500 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title" style ="left:300px;color:white;">Weather Station Sensor Observation Service</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--indigo-500 mdl-color-text--blue-50">
+        <header class="demo-drawer-header" style="height:31px;">
+          <!-- //<img src="images/user.jpg" class="demo-avatar"> -->
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--indigo-400">
+<button class = "mdl-button" style ="color:white;" onclick="test();">getCapabilities</button>
+<button id = "b1" class = "mdl-button" style ="color:white;" onclick="callTemp();">TemperatureSensors</button>
+<button id = "b2" class = "mdl-button" style ="color:white;" onclick="callPrecipitation();">PrecipitationSensors</button>
+<button id = "b3" class = "mdl-button" style ="color:white;" onclick="callPressure();">PressureSensors</button>
+<button id = "b4" class = "mdl-button" style ="color:white;" onclick="callEvapotranspiration();">EvapotranpirationSensors</button>
+<button id="myBtn" class = "mdl-button" style ="color:white;">getObservation</button>
+<div class="mui-dropdown">
+  <button id = "b5" class="mdl-button" data-mui-toggle="dropdown" style="color:white;">
+    getFeatureOfInterest
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+  <li><a href="#" onclick="getFeature('AhmedabadCity');">Ahmedabad</a></li>
+  <li><a href="#" onclick="getFeature('AizwalCity');">Aizwal</a></li>
+  <li><a href="#" onclick="getFeature('AurangabadCity');">Aurangabad</a></li>
+  <li><a href="#" onclick="getFeature('BathindaCity');">Bathinda</a></li>
+  <li><a href="#" onclick="getFeature('BengaluruCity');">Bengaluru</a></li>
+  <li><a href="#" onclick="getFeature('BikanerCity');">Bikaner</a></li>
+  <li><a href="#" onclick="getFeature('BokaroCity');">Bokaro</a></li>
+  <li><a href="#" onclick="getFeature('ChandigarhCity');">Chandigarh</a></li>
+  <li><a href="#" onclick="getFeature('ChennaiCity');">Chennai</a></li>
+  <li><a href="#" onclick="getFeature('DadraNagarCity');">DadraNagar</a></li>
+  <li><a href="#" onclick="getFeature('DarjeelingCity');">Darjeeling</a></li>
+  <li><a href="#" onclick="getFeature('DarrangCity');">Darrang</a></li>
+  <li><a href="#" onclick="getFeature('EastImphalCity');">EastImphal</a></li>
+  <li><a href="#" onclick="getFeature('JaintiaHillsCity');">JaintiaHills</a></li> 
+  <li><a href="#" onclick="getFeature('KargilCity');">Kargil</a></li>
+  <li><a href="#" onclick="getFeature('MuzaffarpurCity');">Muzaffarpur</a></li>
+  <li><a href="#" onclick="getFeature('DelhiCity');">NewDelhi</a></li>
+  <li><a href="#" onclick="getFeature('ShimlaCity');">Shimla</a></li>
+  <li><a href="#" onclick="getFeature('VijaywadaCity');">Vijayawada</a></li>
+  <li><a href="#" onclick="getFeature('WestKamengCity');">WestKameng</a></li>
+  <li><a href="#" onclick="getFeature('YavatmalCity');">Yavatmal</a></li>
+  </ul>
+</div>
+<div class="mui-dropdown">
+  <button id = "b6" class="mdl-button" data-mui-toggle="dropdown" style="color:white;">
+    DescribeSensor
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+  <li><a href="#" onclick="describeSensor('temp_ahmedabad');">Ahmedabad</a></li>
+  <li><a href="#" onclick="describeSensor('temp_aizwal');">Aizwal</a></li>
+  <li><a href="#" onclick="describeSensor('temp_aurangabad');">Aurangabad</a></li>
+  <li><a href="#" onclick="describeSensor('pressure_Bengaluru');">Bengaluru</a></li>
+  <li><a href="#" onclick="describeSensor('pressure_Bikaner');">Bikaner</a></li>
+  <li><a href="#" onclick="describeSensor('pressure_Bokaro');">Bokaro</a></li>
+  <li><a href="#" onclick="describeSensor('precipitation_Chandigarh');">Chandigarh</a></li>
+  <li><a href="#" onclick="describeSensor('evapotranspiration_Chennai');">Chennai</a></li>
+  <li><a href="#" onclick="describeSensor('precipitation_Muzaffarpur');">Muzaffarpur</a></li>
+  <li><a href="#" onclick="describeSensor('evapotranspiration_Delhi');">NewDelhi</a></li>
+  <li><a href="#" onclick="describeSensor('evapotranspiration_Shimla');">Shimla</a></li>
+  <li><a href="#" onclick="describeSensor('precipitation_Vijaywada');">Vijayawada</a></li>
+  <li><a href="#" onclick="describeSensor('precipitation_WestKameng');">WestKameng</a></li>
+  <li><a href="#" onclick="describeSensor('evapotranspiration_Yavatmal');">Yavatmal</a></li>
+  </ul>
+</div>
+<button id = "myBtn1" class = "mdl-button" style ="color:white;">Temporal Subsetting</button>
+<button id = "myBtn2" class = "mdl-button" style ="color:white;">Boolean Filtering</button>
+<!-- 
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div> -->
+          <!-- <a class="mdl-navigation__link" onclick="test();"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">Spatial Subsetting</i>Spatial Subsetting</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+         --></nav>
+      </div>
+    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+    <div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2 align = "center">getObservation Service</h2>
+    </div>
+    <div class="modal-body">
+      <form>
+      <ul class="mui-tabs__bar">
+  <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Temperature</a></li>
+  <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Precipitation</a></li>
+  <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Pressure</a></li>
+  <li><a data-mui-toggle="tab" data-mui-controls="pane-default-4">Evapotranspiration</a></li>
+</ul>
+<div class="mui-tabs__pane mui--is-active" id="pane-default-1">
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown" style="color:white;">
+    TemperatureSensor
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+    <li><a href="#" onclick="getObservationTemp('temp_ahmedabad')">Ahmedabad</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_aizwal')">Aizwal</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_aurangabad')">Aurangabad</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_bathinda')">Bathinda</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_bengaluru')">Bengaluru</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_bikaner')">Bikaner</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_bokaro')">Bokaro</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_chandigarh')">Chandigarh</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_chennai')">Chennai</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_dadranagarhaveli')">DadraNagarHaveli</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_darjeeling')">Darjeeling</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_eastimphal')">EastImphal</a></li>
+    <li><a href="#" onclick="getObservationTemp('temp_newdelhi')">NewDelhi</a></li>
+  </ul>
+</div>
+</div>
+<div class="mui-tabs__pane" id="pane-default-2">
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown" style="color:white;">
+    PrecipitationSensor
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Ahmedabad')">Ahmedabad</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Aizwal')">Aizwal</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Bengaluru')">Bengaluru</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Bikaner')">Bikaner</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Bokaro')">Bokaro</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Chandigarh')">Chandigarh</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Darrang')">Darrang</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Muzaffarpur ')">Muzaffarpur</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_NewDelhi')">NewDelhi</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Shimla')">Shimla</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Vijayawada')">Vijayawada</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_WestKameng')">WestKameng</a></li>
+    <li><a href="#" onclick="getObservationPrecipitation('precipitation_Yavatmal')">Yavatmal</a></li>
+  </ul>
+</div>
+</div>
+<div class="mui-tabs__pane" id="pane-default-3">
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown" style="color:white;">
+    PressureSensor
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+    <li><a href="#" onclick="getObservationPressure('pressure_Bengaluru')">Bengaluru</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Bikaner')">Bikaner</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Bokaro')">Bokaro</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Chandigarh')">Chandigarh</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Chennai')">Chennai</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_DadraNagar')">DadraNagarHaveli</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_JaintiaHills')">JaintiaHills</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Kargil')">Kargil</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Muzaffarpur')">Muzaffarpur</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_NewDelhi')">NewDelhi</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Shimla')">Shimla</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Vijayawada')">Vijayawada</a></li>
+    <li><a href="#" onclick="getObservationPressure('pressure_Yavatmal')">Yavatmal</a></li>
+  </ul>
+</div>
+</div>
+<div class="mui-tabs__pane" id="pane-default-4">
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown" style="color:white;">
+    EvapotranspirationSensor
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu">
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Ahmedabad')">Ahmedabad</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Aizwal')">Aizwal</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Aurangabad')">Aurangabad</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Bathinda')">Bathinda</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Bengaluru')">Bengaluru</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Chandigarh')">Chandigarh</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Chennai')">Chennai</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Kargil')">Kargil</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_NewDelhi')">NewDelhi</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Shimla')">Shimla</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Vijayawada')">Vijayawada</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_WestKameng')">WestKameng</a></li>
+    <li><a href="#" onclick="getObservationEvapo('evapotranspiration_Yavatmal')">Yavatmal</a></li>
+  </ul>
+</div>
+</div>
+</form>
+    </div>
+    <!-- <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div> -->
+  </div>
+
+</div>
+<div id="myModal1" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close1">×</span>
+      <h2 align = "center">Temporal Subsetting</h2>
+      </div>
+      <div class="modal-body">
+      <form onsubmit="temporalSubsetting(); return false;">
+<select id = "sensor">
+  <option value="temp_ahmedabad">Temperature Ahmedabad</option>
+  <option value="temp_chennai">Temperature Chennai</option>
+  <option value="temp_darjeeling">Temperature Darjeeling</option>
+  <option value="temp_newdelhi">Temperature Delhi</option>
+  <option value="precipitation_Bengaluru">Precipitation Bengaluru</option>
+  <option value="precipitation_Shimla">Precipitation Shimla</option>
+  <option value="precipitation_Vijaywada">Precipitation Vijaywada</option>
+  <option value="precipitation_Yavatmal">Precipitation Yavatmal</option>
+  <option value="pressure_Bokaro">Pressure Bokaro</option>
+  <option value="pressure_Kargil">Pressure Kargil</option>
+  <option value="evapotranspiration_Aurangabad">Evapotranspiration Aurangabad</option>
+  <option value="evapotranspiration_WestKameng">Evapotranspiration WestKameng</option>
+</select><br><br>
+<select id = "offering">
+  <option value="temperatureOffering">Temperature Offering</option>
+  <option value="precipitationOffering">Precipitation Offering</option>
+  <option value="pressureOffering">Pressure Offering</option>
+  <option value="evapotranspirationOffering">Evapotranspiration Offering</option>
+</select><br><br>
+<select id = "afterbefore">
+  <option value="After">After</option>
+  <option value="Before">Before</option>
+</select><br><br>
+<select id = "years">
+  <option value="1993">1993</option>
+  <option value="1994">1994</option>
+  <option value="1995">1995</option>
+  <option value="1996">1996</option>
+  <option value="1997">1997</option>
+  <option value="1998">1998</option>
+  <option value="1999">1999</option>
+  <option value="2000">2000</option>
+  <option value="2001">2001</option>
+</select><br><br>
+<button class = "mdl-button">Submit</button>
+</form>
+</div>
+    </div></div>
+<div id="myModal2" class="modal">
+  Modal content
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close2">×</span>
+      <h2 align = "center">Boolean Filtering</h2>
+      </div>
+      <div class="modal-body">
+      <form onsubmit="booleanFiltering(); return false;">
+<select id = "sensor1">
+  <option value="temp_ahmedabad">Temperature Ahmedabad</option>
+  <option value="temp_chennai">Temperature Chennai</option>
+  <option value="temp_darjeeling">Temperature Darjeeling</option>
+  <option value="temp_newdelhi">Temperature Delhi</option>
+  <option value="precipitation_Bengaluru">Precipitation Bengaluru</option>
+  <option value="precipitation_Shimla">Precipitation Shimla</option>
+  <option value="precipitation_Vijaywada">Precipitation Vijaywada</option>
+  <option value="precipitation_Yavatmal">Precipitation Yavatmal</option>
+  <option value="pressure_Bokaro">Pressure Bokaro</option>
+  <option value="pressure_Kargil">Pressure Kargil</option>
+  <option value="evapotranspiration_Aurangabad">Evapotranspiration Aurangabad</option>
+  <option value="evapotranspiration_WestKameng">Evapotranspiration WestKameng</option>
+</select><br><br>
+<select id = "Sensors">
+  <option value="temperatureOffering">Temperature(-10 to 50)</option>
+  <option value="precipitationOffering">Precipitation(0 to 900)</option>
+  <option value="pressureOffering">Pressure(0 to 50)</option>
+  <option value="evapotranspirationOffering">Evapotranspiration(0 to 20)</option>
+</select><br><br>
+<select id = "greaterless">
+  <option value="Greaterthan">Greater than</option>
+  <option value="Lessthan">Less than</option>
+</select><br><br>
+<input type="text" id = "value1"><br><br>
+<button class = "mdl-button">Submit</button>
+</form>
+</div>
+    </div></div></div>
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+var modal1 = document.getElementById('myModal1');
+var modal2 = document.getElementById('myModal2');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var btn1 = document.getElementById("myBtn1");
+var btn2 = document.getElementById("myBtn2");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close1")[0];
+var span2 = document.getElementsByClassName("close2")[0];
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+btn1.onclick = function() {
+    modal1.style.display = "block";
+}
+btn2.onclick = function() {
+    modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+span1.onclick = function() {
+    modal1.style.display = "none";
+}
+span2.onclick = function() {
+    modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+window.onclick = function(event) {
+    if (event.target == modal1) {
+        modal.style.display = "none";
+    }
+}
+</script>
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  </body>
+<style>
+td div.olMap {
+    float:right !important;
+    margin-left: 250px !important;
+    }
+</style>
+<script>
+    function test() {
+    	/* var response =  */getCap("http://localhost/istsos/weather?service=SOS&version=1.0.0&request=GetObservation&offering=temperatureOffering&procedure=urn:ogc:def:procedure:x-istsos:1.0:temp_try&eventTime=1992-01-02T00:10:00.000000+0000/1993-12-01T00:10:00.000000+0100&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:longittude,urn:ogc:def:parameter:x-istsos:1.0:lattitude&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    	/* if (response != "")
+    		{ */
+    	//alert(response);
+    	document.getElementById("b1").disabled=false;
+    	document.getElementById("b2").disabled=false;
+    	document.getElementById("b3").disabled=false;
+    	document.getElementById("b4").disabled=false;
+    	document.getElementById("b5").disabled=false;
+    	document.getElementById("myBtn").disabled=false;
+    	document.getElementById("myBtn1").disabled=false;
+    	document.getElementById("myBtn2").disabled=false;
+    	document.getElementById("b6").disabled=false;
+    		//}
+    }
+    </script>
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function(){
+            this.classList.toggle("active");
+            this.nextElementSibling.classList.toggle("show");
+        }
+    }
+    </script>
+    <script>
+    function callTemp()
+    {
+    	tempMarkers("http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=temperatureOffering&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:longittude,urn:ogc:def:parameter:x-istsos:1.0:lattitude&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    }
+    </script>
+    <script>
+    function callPrecipitation()
+    {
+    	precipitationMarkers("http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=precipitationOffering&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:longittude,urn:ogc:def:parameter:x-istsos:1.0:lattitude&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    }
+    </script>
+    <script>
+    function callPressure()
+    {
+    	pressureMarkers("http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=pressureOffering&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:longittude,urn:ogc:def:parameter:x-istsos:1.0:lattitude&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    }
+    </script>
+    <script>
+    function callEvapotranspiration()
+    {
+    	evapotranspirationMarkers("http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=evapotranspirationOffering&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:longittude,urn:ogc:def:parameter:x-istsos:1.0:lattitude&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    }
+    </script>
+    <script>
+    function getFeature(city)
+    {
+    	var url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetFeatureOfInterest&FeatureOfInterestId=".concat(city);
+    	//alert(url);
+    	getFeatures(url);
+    }
+    </script>
+    <script>
+    function describeSensor(proceduree)
+    {
+    	var url = "http://localhost/istsos/weatherstation?REQUEST=DescribeSensor&SERVICE=SOS&VERSION=1.0.0&PROCEDURE=urn:ogc:def:procedure:x-istsos:1.0:"+proceduree+"&OUTPUTFORMAT=text/xml%3Bsubtype%3D%22sensorML/1.0.1%22";
+    	//alert(url);
+    	describeSensors(url);
+    }
+    </script>
+    <script>
+    function getObservationTemp(city)
+    {
+    	var url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=temperatureOffering&procedure=urn:ogc:def:procedure:x-istsos:1.0:".concat(city).concat("&eventTime=1992-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    	/* var observe =  */getObsTemp(url);
+    	    modal.style.display = "none";
+    	/* if (observe != "")
+    		{
+	    	parse(observe);
+    		} */
+    }
+    </script>
+    <script>
+    function getObservationPrecipitation(city)
+    {
+    	var url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=precipitationOffering&procedure=urn:ogc:def:procedure:x-istsos:1.0:".concat(city).concat("&eventTime=1992-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:meteo:air:rainfall&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    	/* var observe =  */getObsPrecipitation(url);
+    	    modal.style.display = "none";
+    }
+    </script>
+    <script>
+    function getObservationPressure(city)
+    {
+    	var url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=pressureOffering&procedure=urn:ogc:def:procedure:x-istsos:1.0:".concat(city).concat("&eventTime=1992-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:pressure&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    	getObsPressure(url);
+    	    modal.style.display = "none";
+    	
+    }
+    </script>
+    <script>
+    function getObservationEvapo(city)
+    {
+    	var url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering=evapotranspirationOffering&procedure=urn:ogc:def:procedure:x-istsos:1.0:".concat(city).concat("&eventTime=1992-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty=urn:ogc:def:parameter:x-istsos:1.0:evapo&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0");
+    	getObsEvapo(url);
+    	    modal.style.display = "none";
+    	
+    }
+    </script>
+    <script type="text/javascript">
+    function booleanFiltering()
+    {
+    	var url;
+    	var proc;
+    	var sens = document.getElementById("sensor1").value;
+    	var offer = document.getElementById("Sensors").value;
+    	var gl = document.getElementById("greaterless").value;
+        var val = document.getElementById("value1").value;
+    	if(offer == "temperatureOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature";
+    		}
+    	else if(offer == "precipitationOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:meteo:air:rainfall";
+    		}
+    	else if(offer == "pressureOffering")
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:pressure";
+    		}
+    	else
+    		{
+    		proc = "urn:ogc:def:parameter:x-istsos:1.0:evapo";
+    		}
+    	console.log("Hi");
+    		url = "http://localhost/istsos/weatherstation?service=SOS&version=1.0.0&request=GetObservation&offering="+offer+"&procedure=urn:ogc:def:procedure:x-istsos:1.0:"+sens+"&eventTime=1992-01-02T00:10:00.000000+0000/2002-12-01T00:10:00.000000+0100&observedProperty="+proc+"&responseFormat=text/xml;subtype=%22om/1.0.0%22&service=SOS&version=1.0.0";
+    		
+    		getObsBoolean(url, gl, val);
+    }
+    </script>
+    <!-- <script>
+    function parse(obs)
+    {
+    	var count;
+    	var attherate = obs.split("@");
+    	var datee;
+    	var temperature;
+    	for (count = 0; count < attherate.length; count++)
+    		{
+    		var temp = attherate[count].split(",")
+    		datee[count] = temp[0];
+    		temperature[count] = temp[1];
+    		}
+    	drawTable(datee, temperature);
+    }
+    </script> -->
+</html>

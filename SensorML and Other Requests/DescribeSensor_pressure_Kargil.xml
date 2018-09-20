@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml:SensorML
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:sml="http://www.opengis.net/sensorML/1.0.1"
+    xmlns:swe="http://www.opengis.net/swe/1.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.1"
+    xmlns="http://www.opengis.net/sensorML/1.0.1" xsi:schemaLocation="http://www.opengis.net/sensorML/1.0.1 http://schemas.opengis.net/sensorML/1.0.1/sensorML.xsd">
+    <sml:member>
+        <sml:System gml:id="pressure_Kargil">
+            <gml:description>Mean pressure of Kargil City</gml:description>
+            <gml:name>pressure_Kargil</gml:name>
+            <sml:keywords>
+                <sml:KeywordList>
+                    <sml:keyword>SOS</sml:keyword>
+                </sml:KeywordList>
+            </sml:keywords>
+            <sml:identification>
+                <sml:IdentifierList>
+                    <sml:identifier name="uniqueID">
+                        <sml:Term definition="urn:ogc:def:identifier:OGC:uniqueID">
+                            <sml:value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Kargil</sml:value>
+                        </sml:Term>
+                    </sml:identifier>
+                </sml:IdentifierList>
+            </sml:identification>
+            <sml:classification>
+                <sml:ClassifierList>
+                    <sml:classifier name="System Type">
+                        <sml:Term definition="urn:ogc:def:classifier:x-istsos:1.0:systemType">
+                            <sml:value>insitu-fixed-point</sml:value>
+                        </sml:Term>
+                    </sml:classifier>
+                    <sml:classifier name="Sensor Type">
+                        <sml:Term definition="urn:ogc:def:classifier:x-istsos:1.0:sensorType">
+                            <sml:value>pressureSensor</sml:value>
+                        </sml:Term>
+                    </sml:classifier>
+                </sml:ClassifierList>
+            </sml:classification>
+            <sml:capabilities>
+                <swe:DataRecord />
+            </sml:capabilities>
+            <sml:location>
+                <gml:Point srsName="EPSG:4326" gml:id="loc_KargilCity">
+                    <gml:coordinates>76.1349,34.5539,0</gml:coordinates>
+                </gml:Point>
+            </sml:location>
+            <sml:outputs>
+                <sml:OutputList>
+                    <sml:output name="output data">
+                        <swe:DataRecord definition="urn:ogc:def:dataType:x-istsos:1.0:timeSeries">
+                            <swe:field name="Time">
+                                <swe:Time definition="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601">
+                                    <swe:constraint>
+                                        <swe:AllowedTimes>
+                                            <swe:interval>1992-01-01T23:10:00.000000Z 2003-01-02T00:00:00.000000Z</swe:interval>
+                                        </swe:AllowedTimes>
+                                    </swe:constraint>
+                                </swe:Time>
+                            </swe:field>
+                            <swe:field name="pressure">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:pressure">
+                                    <swe:uom code="hpa" />
+                                </swe:Quantity>
+                            </swe:field>
+                            <swe:field name="longitude">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:longittude">
+                                    <swe:uom code="&#176;E" />
+                                </swe:Quantity>
+                            </swe:field>
+                            <swe:field name="latitude">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:lattitude">
+                                    <swe:uom code="&#176;N" />
+                                </swe:Quantity>
+                            </swe:field>
+                        </swe:DataRecord>
+                    </sml:output>
+                </sml:OutputList>
+            </sml:outputs>
+        </sml:System>
+    </sml:member>
+</sml:SensorML>

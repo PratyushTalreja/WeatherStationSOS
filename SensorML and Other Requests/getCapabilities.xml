@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Capabilities
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:swe="http://www.opengis.net/swe/1.0.1"
+    xmlns:om="http://www.opengis.net/om/1.0"
+    xmlns="http://www.opengis.net/sos/1.0"
+    xmlns:sos="http://www.opengis.net/sos/1.0"
+    xmlns:ows="http://www.opengis.net/ows/1.1"
+    xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:tml="http://www.opengis.net/tml"
+    xmlns:sml="http://www.opengis.net/sensorML/1.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.opengis.net/sos/1.0 http://schemas.opengis.net/sos/1.0.0/sosGetCapabilities.xsd"
+      version="1.0.0">
+    <ows:ServiceIdentification>
+        <ows:Title>Weather Sensor Observation Service</ows:Title>
+        <ows:Abstract>monitoring network</ows:Abstract>
+        <ows:Keywords>
+            <ows:Keyword>SOS</ows:Keyword>
+            <ows:Keyword>SENSOR</ows:Keyword>
+            <ows:Keyword>NETWORK</ows:Keyword>
+        </ows:Keywords>
+        <ows:ServiceType codeSpace="http://opengeospatial.net">OGC:SOS</ows:ServiceType>
+        <ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+        <ows:Fees>NONE</ows:Fees>
+        <ows:AccessConstraints>NONE</ows:AccessConstraints>
+    </ows:ServiceIdentification>
+    <ows:ServiceProvider>
+        <ows:ProviderName>Pratyush</ows:ProviderName>
+        <ows:ProviderSite xlink:href="http://home.iitb.ac.in/~pratyushvtalreja"/>
+        <ows:ServiceContact>
+            <ows:IndividualName>Pratyush</ows:IndividualName>
+            <ows:PositionName>Data Manipulation</ows:PositionName>
+            <ows:ContactInfo>
+                <ows:Phone>
+                    <ows:Voice></ows:Voice>
+                    <ows:Facsimile></ows:Facsimile>
+                </ows:Phone>
+                <ows:Address>
+                    <ows:DeliveryPoint>Hostel 12 IIT Bombay</ows:DeliveryPoint>
+                    <ows:City>Bombay</ows:City>
+                    <ows:AdministrativeArea>Maharashtra</ows:AdministrativeArea>
+                    <ows:PostalCode>400076</ows:PostalCode>
+                    <ows:Country>India</ows:Country>
+                    <ows:ElectronicMailAddress>pratyush.talreja@gmail.com</ows:ElectronicMailAddress>
+                </ows:Address>
+            </ows:ContactInfo>
+        </ows:ServiceContact>
+    </ows:ServiceProvider>
+    <ows:OperationsMetadata>
+        <ows:Operation name="GetCapabilities">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://localhost/istsos/weatherstation"/>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="acceptversions">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="section">
+                <ows:AllowedValues>
+                    <ows:Value>serviceidentification</ows:Value>
+                    <ows:Value>serviceprovider</ows:Value>
+                    <ows:Value>operationsmetadata</ows:Value>
+                    <ows:Value>contents</ows:Value>
+                    <ows:Value>all</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="DescribeSensor">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://localhost/istsos/weatherstation"/>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="version">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="procedure">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aurangabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bathinda</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Kargil</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_WestKameng</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Darrang</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Muzaffarpur</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_WestKameng</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_DadraNagar</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_JaintiaHills</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Kargil</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Muzaffarpur</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_aurangabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bathinda</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_dadranagarhaveli</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_darjeeling</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_eastimphal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_newdelhi</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="outputFormat">
+                <ows:AllowedValues>
+                    <ows:Value>text/xml;subtype="sensorML/1.0.1"</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetObservation">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://localhost/istsos/weatherstation"/>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="version">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="srsName">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:crs:EPSG:4326</ows:Value>
+                    <ows:Value>urn:ogc:crs:EPSG:3857</ows:Value>
+                    <ows:Value>urn:ogc:crs:EPSG:21781</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="offering">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:offering:x-istsos:1.0:evapotranspirationOffering</ows:Value>
+                    <ows:Value>urn:ogc:def:offering:x-istsos:1.0:precipitationOffering</ows:Value>
+                    <ows:Value>urn:ogc:def:offering:x-istsos:1.0:pressureOffering</ows:Value>
+                    <ows:Value>urn:ogc:def:offering:x-istsos:1.0:temperatureOffering</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="eventTime">
+                <ows:AllowedValues>
+                    <ows:Range>
+                        <ows:MinimumValue>1992-01-02T04:40:00+05:30</ows:MinimumValue>
+                        <ows:MaximumValue>2003-01-02T05:30:00+05:30</ows:MaximumValue>
+                    </ows:Range>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="procedure">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aurangabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bathinda</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Kargil</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_WestKameng</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Darrang</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Muzaffarpur</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_WestKameng</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:precipitation_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_DadraNagar</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Delhi</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_JaintiaHills</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Kargil</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Muzaffarpur</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Shimla</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Vijaywada</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:pressure_Yavatmal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_ahmedabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_aizwal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_aurangabad</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bathinda</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bengaluru</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bikaner</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_bokaro</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_chandigarh</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_chennai</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_dadranagarhaveli</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_darjeeling</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_eastimphal</ows:Value>
+                    <ows:Value>urn:ogc:def:procedure:x-istsos:1.0:temp_newdelhi</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="observedProperty">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:evapo</ows:Value>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:lattitude</ows:Value>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:longittude</ows:Value>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:meteo:air:rainfall</ows:Value>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature</ows:Value>
+                    <ows:Value>urn:ogc:def:parameter:x-istsos:1.0:pressure</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="featureOfInterest">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AhmedabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AizwalCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AurangabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BathindaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BikanerCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BokaroCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ChennaiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DadraandNagarHaveliCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DadraNagarCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DarjeelingCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DarrangCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DelhiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:GhaziabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:IdukkiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:JaintiaHillsCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:KargilCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:KohimaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffapurCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffarpurCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:NewDelhiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:PondicherryCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:PuriCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:RaigarhCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ShimlaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:VijayawadaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:WestKamengCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="responseFormat">
+                <ows:AllowedValues>
+                    <ows:Value>text/xml;subtype="om/1.0.0"</ows:Value>
+                    <ows:Value>application/json</ows:Value>
+                    <ows:Value>text/plain</ows:Value>
+                    <ows:Value>text/xml</ows:Value>
+                    <ows:Value>text/x-json</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="resultModel">
+                <ows:AllowedValues>
+                    <ows:Value>om:Observation</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="responseMode">
+                <ows:AllowedValues>
+                    <ows:Value>inline</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetFeatureOfInterest">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://localhost/istsos/weatherstation"/>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="version">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="featureOfInterest">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AhmedabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AizwalCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:AurangabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BathindaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BikanerCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:BokaroCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ChennaiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DadraandNagarHaveliCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DadraNagarCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DarjeelingCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DarrangCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:DelhiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:GhaziabadCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:IdukkiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:JaintiaHillsCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:KargilCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:KohimaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffapurCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffarpurCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:NewDelhiCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:PondicherryCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:PuriCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:RaigarhCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:ShimlaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:VijayawadaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:WestKamengCity</ows:Value>
+                    <ows:Value>urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="srsName">
+                <ows:AllowedValues>
+                    <ows:Value>urn:ogc:crs:EPSG:4326</ows:Value>
+                    <ows:Value>urn:ogc:crs:EPSG:3857</ows:Value>
+                    <ows:Value>urn:ogc:crs:EPSG:21781</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="RegisterSensor">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="version">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="SensorDescription">
+                <ows:AllowedValues>
+                    <ows:Value>Any SensorML</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="ObservationTemplate">
+                <ows:AllowedValues>
+                    <ows:Value>Any om:Observation</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="InsertObservation">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Post xlink:href="http://localhost/istsos/weatherstation"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="service">
+                <ows:AllowedValues>
+                    <ows:Value>SOS</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="version">
+                <ows:AllowedValues>
+                    <ows:Value>1.0.0</ows:Value>
+                    <ows:Value>1.0.1</ows:Value>
+                    <ows:Value>2.0.0</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="AssignedSensorId">
+                <ows:AllowedValues>
+                    <ows:Value>Any registered sensorID</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+            <ows:Parameter name="Observation">
+                <ows:AllowedValues>
+                    <ows:Value>Any om:Observation</ows:Value>
+                </ows:AllowedValues>
+            </ows:Parameter>
+        </ows:Operation>
+    </ows:OperationsMetadata>
+    <Contents>
+        <ObservationOfferingList>
+            <ObservationOffering gml:id="evapotranspirationOffering">
+                <gml:description>Gives the combined ground surface evaporation and plant tranpiration</gml:description>
+                <gml:name>urn:ogc:def:offering:x-istsos:1.0:evapotranspirationOffering</gml:name>
+                <gml:boundedBy>
+                    <gml:Envelope>
+                        <gml:coordinates>72.571399999999997,23.022500000000001</gml:coordinates>
+                    </gml:Envelope>
+                </gml:boundedBy>
+                <time>
+                    <gml:TimePeriod>
+                        <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                        <gml:endPosition>2003-01-02T05:30:00+05:30</gml:endPosition>
+                    </gml:TimePeriod>
+                </time>
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Ahmedabad" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aizwal" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Aurangabad" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bathinda" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Bengaluru" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chandigarh" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Chennai" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Delhi" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Kargil" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Shimla" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Vijaywada" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_WestKameng" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:evapotranspiration_Yavatmal" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:evapo" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:lattitude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longittude" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AhmedabadCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AizwalCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AurangabadCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BathindaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChennaiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DelhiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:KargilCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ShimlaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:WestKamengCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity" />
+                <sos:responseFormat>text/xml;subtype="om/1.0.0"</sos:responseFormat>
+                <sos:responseFormat>application/json</sos:responseFormat>
+                <sos:responseFormat>text/plain</sos:responseFormat>
+                <sos:responseFormat>text/xml</sos:responseFormat>
+                <sos:responseFormat>text/x-json</sos:responseFormat>
+                <sos:resultModel>om:Observation</sos:resultModel>
+                <sos:responseMode>inline</sos:responseMode>
+            </ObservationOffering>
+            <ObservationOffering gml:id="precipitationOffering">
+                <gml:description>Gives the mean rainfall</gml:description>
+                <gml:name>urn:ogc:def:offering:x-istsos:1.0:precipitationOffering</gml:name>
+                <gml:boundedBy>
+                    <gml:Envelope>
+                        <gml:coordinates>72.571399999999997,23.022500000000001</gml:coordinates>
+                    </gml:Envelope>
+                </gml:boundedBy>
+                <time>
+                    <gml:TimePeriod>
+                        <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                        <gml:endPosition>2003-01-02T05:30:00+05:30</gml:endPosition>
+                    </gml:TimePeriod>
+                </time>
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Ahmedabad" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Aizwal" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bengaluru" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bikaner" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Bokaro" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Chandigarh" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Darrang" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Delhi" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Muzaffarpur" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Shimla" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Vijaywada" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_WestKameng" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:precipitation_Yavatmal" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:lattitude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longittude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:meteo:air:rainfall" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AhmedabadCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AizwalCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BikanerCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BokaroCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DarrangCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DelhiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffarpurCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ShimlaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:WestKamengCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity" />
+                <sos:responseFormat>text/xml;subtype="om/1.0.0"</sos:responseFormat>
+                <sos:responseFormat>application/json</sos:responseFormat>
+                <sos:responseFormat>text/plain</sos:responseFormat>
+                <sos:responseFormat>text/xml</sos:responseFormat>
+                <sos:responseFormat>text/x-json</sos:responseFormat>
+                <sos:resultModel>om:Observation</sos:resultModel>
+                <sos:responseMode>inline</sos:responseMode>
+            </ObservationOffering>
+            <ObservationOffering gml:id="pressureOffering">
+                <gml:description>Gives the mean atmospheric pressure</gml:description>
+                <gml:name>urn:ogc:def:offering:x-istsos:1.0:pressureOffering</gml:name>
+                <gml:boundedBy>
+                    <gml:Envelope>
+                        <gml:coordinates>73.016900000000007,20.180900000000001</gml:coordinates>
+                    </gml:Envelope>
+                </gml:boundedBy>
+                <time>
+                    <gml:TimePeriod>
+                        <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                        <gml:endPosition>2003-01-02T05:30:00+05:30</gml:endPosition>
+                    </gml:TimePeriod>
+                </time>
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Bengaluru" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Bikaner" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Bokaro" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Chandigarh" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Chennai" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_DadraNagar" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Delhi" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_JaintiaHills" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Kargil" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Muzaffarpur" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Shimla" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Vijaywada" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:pressure_Yavatmal" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:lattitude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longittude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:pressure" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BikanerCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BokaroCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChennaiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DadraNagarCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DelhiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:JaintiaHillsCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:KargilCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:MuzaffapurCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ShimlaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity" />
+                <sos:responseFormat>text/xml;subtype="om/1.0.0"</sos:responseFormat>
+                <sos:responseFormat>application/json</sos:responseFormat>
+                <sos:responseFormat>text/plain</sos:responseFormat>
+                <sos:responseFormat>text/xml</sos:responseFormat>
+                <sos:responseFormat>text/x-json</sos:responseFormat>
+                <sos:resultModel>om:Observation</sos:resultModel>
+                <sos:responseMode>inline</sos:responseMode>
+            </ObservationOffering>
+            <ObservationOffering gml:id="temperatureOffering">
+                <gml:description>This is related to mean temperature of various places</gml:description>
+                <gml:name>urn:ogc:def:offering:x-istsos:1.0:temperatureOffering</gml:name>
+                <gml:boundedBy>
+                    <gml:Envelope>
+                        <gml:coordinates>72.571399999999997,23.022500000000001</gml:coordinates>
+                    </gml:Envelope>
+                </gml:boundedBy>
+                <time>
+                    <gml:TimePeriod>
+                        <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                        <gml:endPosition>2003-01-02T05:30:00+05:30</gml:endPosition>
+                    </gml:TimePeriod>
+                </time>
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_ahmedabad" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_aizwal" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_aurangabad" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_bathinda" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_bengaluru" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_bikaner" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_bokaro" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_chandigarh" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_chennai" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_dadranagarhaveli" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_darjeeling" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_eastimphal" />
+                <sos:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_newdelhi" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:lattitude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longittude" />
+                <sos:observedProperty xlink:href="urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AhmedabadCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AizwalCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:AurangabadCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BathindaCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BikanerCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BokaroCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChandigarhCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:ChennaiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DadraandNagarHaveliCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:DarjeelingCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:NewDelhiCity" />
+                <sos:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:YavatmalCity" />
+                <sos:responseFormat>text/xml;subtype="om/1.0.0"</sos:responseFormat>
+                <sos:responseFormat>application/json</sos:responseFormat>
+                <sos:responseFormat>text/plain</sos:responseFormat>
+                <sos:responseFormat>text/xml</sos:responseFormat>
+                <sos:responseFormat>text/x-json</sos:responseFormat>
+                <sos:resultModel>om:Observation</sos:resultModel>
+                <sos:responseMode>inline</sos:responseMode>
+            </ObservationOffering>
+            <ObservationOffering gml:id="temporary">
+                <gml:description>temporary offering to hold self-registered procedures/sensors waiting for service adimistration acceptance</gml:description>
+                <gml:name>urn:ogc:def:offering:x-istsos:1.0:temporary</gml:name>
+                <gml:boundedBy>
+                    <gml:Envelope>
+                        <gml:Null>Not Applicable</gml:Null>
+                    </gml:Envelope>
+                </gml:boundedBy>
+                <sos:time />
+                <sos:responseFormat>text/xml;subtype="om/1.0.0"</sos:responseFormat>
+                <sos:responseFormat>application/json</sos:responseFormat>
+                <sos:responseFormat>text/plain</sos:responseFormat>
+                <sos:responseFormat>text/xml</sos:responseFormat>
+                <sos:responseFormat>text/x-json</sos:responseFormat>
+                <sos:resultModel>om:Observation</sos:resultModel>
+                <sos:responseMode>inline</sos:responseMode>
+            </ObservationOffering>
+        </ObservationOfferingList>
+    </Contents>
+</Capabilities>

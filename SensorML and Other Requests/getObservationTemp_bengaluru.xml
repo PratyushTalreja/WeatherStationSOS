@@ -1,0 +1,77 @@
+<om:ObservationCollection
+    xmlns:sos="http://www.opengis.net/sos/1.0"
+    xmlns:om="http://www.opengis.net/om/1.0"
+    xmlns:swe="http://www.opengis.net/swe/1.0.1"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/om/1.0  http://schemas.opengis.net/om/1.0.0/om.xsd">
+    <gml:description>This is related to mean temperature of various places</gml:description>
+    <gml:name>temperatureOffering</gml:name>
+    <om:member>
+        <om:Observation>
+            <gml:name>temp_bengaluru</gml:name>
+            <om:samplingTime>
+                <gml:TimePeriod>
+                    <gml:beginPosition>1992-01-01T23:10:00+00:00</gml:beginPosition>
+                    <gml:endPosition>2003-01-02T00:00:00+00:00</gml:endPosition>
+                    <gml:duration>P4018DT50M</gml:duration>
+                </gml:TimePeriod>
+            </om:samplingTime>
+            <om:procedure xlink:href="urn:ogc:def:procedure:x-istsos:1.0:temp_bengaluru"/>
+            <om:observedProperty>
+                <swe:CompositePhenomenon gml:id="comp_6" dimension="4">
+                    <gml:name>timeSeriesOfObservations</gml:name>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longittude"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:lattitude"/>
+                </swe:CompositePhenomenon>
+            </om:observedProperty>
+            <om:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:BengaluruCity">
+                <gml:FeatureCollection>
+                    <gml:location>
+                        <gml:Point srsName="EPSG:4326">
+                            <gml:coordinates>77.5946,12.9716,0</gml:coordinates>
+                        </gml:Point>
+                    </gml:location>
+                </gml:FeatureCollection>
+            </om:featureOfInterest>
+            <om:result>
+                <swe:DataArray>
+                    <swe:elementCount>
+                        <swe:Count>
+                            <swe:value>4</swe:value>
+                        </swe:Count>
+                    </swe:elementCount>
+                    <swe:elementType name="SimpleDataArray">
+                        <swe:DataRecord>
+                            <swe:field name="Time">
+                                <swe:Time definition="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601"/>
+                            </swe:field>
+                            <swe:field name="air-temperature">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:meteo:air:temperature">
+                                    <swe:uom code="°C"/>
+                                </swe:Quantity>
+                            </swe:field>
+                            <swe:field name="longitude">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:longittude">
+                                    <swe:uom code="°E"/>
+                                </swe:Quantity>
+                            </swe:field>
+                            <swe:field name="latitude">
+                                <swe:Quantity definition="urn:ogc:def:parameter:x-istsos:1.0:lattitude">
+                                    <swe:uom code="°N"/>
+                                </swe:Quantity>
+                            </swe:field>
+                        </swe:DataRecord>
+                    </swe:elementType>
+                    <swe:encoding>
+                        <swe:TextBlock tokenSeparator="," blockSeparator="@" decimalSeparator="."/>
+                    </swe:encoding>
+                    <swe:values>1992-01-31T23:10:00+00:00,24.735000,77.594600,12.971600@1992-02-29T23:10:00+00:00,26.484000,77.594600,12.971600@1992-03-31T23:10:00+00:00,28.103000,77.594600,12.971600@1992-04-30T23:10:00+00:00,26.869000,77.594600,12.971600@1992-05-31T23:10:00+00:00,24.811000,77.594600,12.971600@1992-06-30T23:10:00+00:00,24.261000,77.594600,12.971600@1992-07-31T23:10:00+00:00,24.085000,77.594600,12.971600@1992-08-31T23:10:00+00:00,24.627000,77.594600,12.971600@1992-09-30T23:10:00+00:00,24.391000,77.594600,12.971600@1992-10-31T23:10:00+00:00,23.536000,77.594600,12.971600@1992-11-30T23:10:00+00:00,21.444000,77.594600,12.971600@1992-12-31T23:10:00+00:00,22.218000,77.594600,12.971600@1993-01-31T23:10:00+00:00,24.155000,77.594600,12.971600@1993-02-28T23:10:00+00:00,26.692000,77.594600,12.971600@1993-03-31T23:10:00+00:00,28.203000,77.594600,12.971600@1993-04-30T23:10:00+00:00,27.816000,77.594600,12.971600@1993-05-31T23:10:00+00:00,25.299000,77.594600,12.971600@1993-06-30T23:10:00+00:00,24.277000,77.594600,12.971600@1993-07-31T23:10:00+00:00,24.456000,77.594600,12.971600@1993-08-31T23:10:00+00:00,24.127000,77.594600,12.971600@1993-09-30T23:10:00+00:00,24.201000,77.594600,12.971600@1993-10-31T23:10:00+00:00,23.140000,77.594600,12.971600@1993-11-30T23:10:00+00:00,21.668000,77.594600,12.971600</swe:values>
+                </swe:DataArray>
+            </om:result>
+        </om:Observation>
+    </om:member>
+</om:ObservationCollection>

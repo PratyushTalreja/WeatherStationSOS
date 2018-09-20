@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sa:SamplingPoint 
+gml:id="VijaywadaCity"
+    xmlns:sa="http://www.opengis.net/sampling/1.0"
+    xmlns:swe="http://www.opengis.net/swe/1.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:om="http://www.opengis.net/om/1.0" 
+xsi:schemaLocation="http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+    <gml:description>NULL</gml:description>
+    <gml:name>VijaywadaCity</gml:name>
+    <sa:sampledFeature/>
+    <sa:relatedObservation>
+        <om:Observation>
+            <om:samplingTime>
+                <gml:TimePeriod>
+                    <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                    <gml:endPosition>2002-12-01T04:40:00+05:30</gml:endPosition>
+                    <gml:duration>P3986D</gml:duration>
+                </gml:TimePeriod>
+            </om:samplingTime>
+            <om:procedure xlink:href="evapotranspiration_Vijaywada"/>
+            <om:observedProperty>
+                <swe:CompositePhenomenon gml:id="comp_64" dimension="4">
+                    <gml:name/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601 " />
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:evapotranspiration"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:latitude"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longitude"/>
+                </swe:CompositePhenomenon>
+            </om:observedProperty>
+            <om:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity"/>
+            <om:result/>
+        </om:Observation>
+    </sa:relatedObservation>
+    <sa:relatedObservation>
+        <om:Observation>
+            <om:samplingTime>
+                <gml:TimePeriod>
+                    <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                    <gml:endPosition>2002-12-01T04:40:00+05:30</gml:endPosition>
+                    <gml:duration>P3986D</gml:duration>
+                </gml:TimePeriod>
+            </om:samplingTime>
+            <om:procedure xlink:href="precipitation_Vijaywada"/>
+            <om:observedProperty>
+                <swe:CompositePhenomenon gml:id="comp_38" dimension="4">
+                    <gml:name/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601 " />
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:air-rainfall"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:latitude"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longitude"/>
+                </swe:CompositePhenomenon>
+            </om:observedProperty>
+            <om:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity"/>
+            <om:result/>
+        </om:Observation>
+    </sa:relatedObservation>
+    <sa:relatedObservation>
+        <om:Observation>
+            <om:samplingTime>
+                <gml:TimePeriod>
+                    <gml:beginPosition>1992-01-02T04:40:00+05:30</gml:beginPosition>
+                    <gml:endPosition>2002-12-01T04:40:00+05:30</gml:endPosition>
+                    <gml:duration>P3986D</gml:duration>
+                </gml:TimePeriod>
+            </om:samplingTime>
+            <om:procedure xlink:href="pressure_Vijaywada"/>
+            <om:observedProperty>
+                <swe:CompositePhenomenon gml:id="comp_52" dimension="4">
+                    <gml:name/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:time:iso8601 " />
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:latitude"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:longitude"/>
+                    <swe:component xlink:href="urn:ogc:def:parameter:x-istsos:1.0:pressure"/>
+                </swe:CompositePhenomenon>
+            </om:observedProperty>
+            <om:featureOfInterest xlink:href="urn:ogc:def:feature:x-istsos:1.0:Point:VijaywadaCity"/>
+            <om:result/>
+        </om:Observation>
+    </sa:relatedObservation>
+    <sa:position>
+        <gml:Point srsName="EPSG:4326">
+            <gml:coordinates>80.647999999999996,16.5062,0</gml:coordinates>
+        </gml:Point>
+    </sa:position>
+</sa:SamplingPoint>
